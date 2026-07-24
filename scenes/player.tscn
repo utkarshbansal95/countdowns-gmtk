@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://igc2m8ntqn3c"]
+
+[ext_resource type="Texture2D" uid="uid://ycsjsnayqsvg" path="res://sprites/alien10001.png" id="1_3vyb7"]
+
+[sub_resource type="GDScript" id="GDScript_o5qli"]
+script/source = "extends CharacterBody2D
+
+@export var acceleration := 10.0
+
+func _physics_process(delta):
+	var input_vector := Vector2(Input.get_axis(\"move_left\",\"move_right\"),Input.get_axis(\"move_up\",\"move_down\"))
+	velocity += input_vector*acceleration
+	
+	move_and_slide()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sen1n"]
+radius = 31.0
+
+[node name="player" type="CharacterBody2D" unique_id=1455936356]
+script = SubResource("GDScript_o5qli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=140166172]
+shape = SubResource("CircleShape2D_sen1n")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1740958411]
+texture = ExtResource("1_3vyb7")
