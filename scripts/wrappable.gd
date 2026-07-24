@@ -12,11 +12,12 @@ func _ready():
 			break
 
 func _physics_process(delta):
+	move_and_slide()
 	if global_position.y+wrap_margin<0:
 		global_position.y=screen_size.y-wrap_margin
-	if global_position.y+wrap_margin>screen_size.y:
+	elif global_position.y+wrap_margin>screen_size.y:
 		global_position.y=-wrap_margin
 	if global_position.x+wrap_margin<0:
 		global_position.x=screen_size.x-wrap_margin
-	if global_position.x+wrap_margin>screen_size.x:
+	elif global_position.x+wrap_margin>screen_size.x:
 		global_position.x=-wrap_margin
