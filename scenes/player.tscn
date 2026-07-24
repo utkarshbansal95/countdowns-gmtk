@@ -5,12 +5,14 @@
 [sub_resource type="GDScript" id="GDScript_o5qli"]
 script/source = "extends Wrappable
 
-@export var acceleration := 10.0
+@export var acceleration := 12.0
+@export var max_speed := 400.0
 
 func _physics_process(delta):
 	var input_vector := Vector2(Input.get_axis(\"move_left\",\"move_right\"),Input.get_axis(\"move_up\",\"move_down\"))
 	velocity += input_vector*acceleration
-	
+	velocity=velocity.limit_length(max_speed)
+	velocity=velocity.move_toward(Vector2(0,0),2.0)
 	move_and_slide()
 "
 
