@@ -1,4 +1,4 @@
-class_name Wrappable extends CharacterBody2D
+class_name WrappableCharacter extends CharacterBody2D
 
 var screen_size: Vector2
 

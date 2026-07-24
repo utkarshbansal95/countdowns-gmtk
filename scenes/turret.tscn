@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cx12ejysg4vua"]
+
+[ext_resource type="Script" uid="uid://17smg0q4yfcs" path="res://scripts/turret.gd" id="1_el7wl"]
+[ext_resource type="Texture2D" uid="uid://b08bjyoyobk2l" path="res://sprites/turret4.png" id="2_485p4"]
+
+[node name="turret" type="CharacterBody2D" unique_id=1831526037]
+script = ExtResource("1_el7wl")
+metadata/_custom_type_script = "uid://c1u3fx3ds2w1w"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2069483334]
+position = Vector2(0, -38)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_485p4")
