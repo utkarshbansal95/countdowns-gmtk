@@ -8,12 +8,8 @@ func _ready():
 
 func _process(delta):
 	if using_mouse:
-		#rotation.z=(get_global_mouse_position()-global_position).angle()+deg_to_rad(90.0)
-		var target := _mouse_on_play_plane()
-		var dir := target - global_position   # vector from turret to the mouse, world space
-		# atan2 gives the angle of 'dir' from +X, counter-clockwise positive.
-		# Subtract 90° because the barrel points +Y (up) at rotation 0.
-		# If the barrel aims the wrong way, flip this sign or add PI to tune it.
+		var target := _mouse_on_play_plane() #defined below. Gets the vector of mouse from origin
+		var dir := target - global_position   
 		rotation.z = atan2(dir.y, dir.x) - PI / 2.0
 	else:
 		if Input.is_action_pressed("clockwise"):
@@ -21,7 +17,7 @@ func _process(delta):
 		if Input.is_action_pressed("counterclockwise"):
 			rotate_z(rotation_speed)
 
-#Pre-defined function from the internet for a 3d get global mouse position
+#Got from claude for a 3d get global mouse position
 func _mouse_on_play_plane() -> Vector3:
 	var cam := get_viewport().get_camera_3d()
 	var mouse := get_viewport().get_mouse_position()
