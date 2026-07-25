@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cap8y2hyde0o7"]
+
+[ext_resource type="Script" uid="uid://c4cb433qwns35" path="res://scripts/laser.gd" id="1_a7dhc"]
+[ext_resource type="PackedScene" uid="uid://cdcrj50gaf68y" path="res://3d Models/Blue.glb" id="1_xmihv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a7dhc"]
+height = 2.461914
+
+[node name="laser" type="Area3D" unique_id=1123376728]
+collision_layer = 8
+collision_mask = 20
+script = ExtResource("1_a7dhc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1722678000]
+transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, -2.0190907e-09, 0.046191406)
+shape = SubResource("CapsuleShape3D_a7dhc")
+
+[node name="Blue2" parent="." unique_id=1202348782 instance=ExtResource("1_xmihv")]
+transform = Transform3D(-4.371139e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.371139e-09, 0, 0, 0)
+
+[node name="LaserTimer" type="Timer" parent="." unique_id=1745099772]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="LaserTimer" to="." method="_on_timer_timeout"]
