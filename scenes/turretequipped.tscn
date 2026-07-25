@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cx12ejysg4vua"]
+
+[ext_resource type="Script" uid="uid://17smg0q4yfcs" path="res://scripts/turretequipped.gd" id="1_b7fya"]
+[ext_resource type="PackedScene" uid="uid://ckg7saw4koo3p" path="res://3d Models/17957_Hand_cannon_v1.obj" id="2_0ms65"]
+
+[node name="turret" type="CharacterBody3D" unique_id=1993196189]
+script = ExtResource("1_b7fya")
+
+[node name="17957_Hand_cannon_v1" parent="." unique_id=1101786658 instance=ExtResource("2_0ms65")]
+transform = Transform3D(2.1855695e-09, -0.05, 4.371139e-09, -0.05, -2.1855695e-09, 0, 1.9106854e-16, -4.371139e-09, -0.05, -0.32243377, -0.008349955, 0)

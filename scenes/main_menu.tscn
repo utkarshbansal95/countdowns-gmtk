@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://5jh6ghfqtw8m"]
+
+[ext_resource type="Script" uid="uid://cnyy1tkgoi71i" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+
+[node name="MainMenu" type="Node2D" unique_id=1875093260]
+script = ExtResource("1_l6cm7")
+
+[node name="MenuItems" type="ItemList" parent="." unique_id=1593683751]
+offset_left = 716.0
+offset_top = 326.0
+offset_right = 831.0
+offset_bottom = 417.4
+scale = Vector2(5, 5)
+allow_search = false
+wraparound_items = false
+item_count = 3
+item_0/text = "Start Game"
+item_1/text = "Controls"
+item_2/text = "Credits"
+
+[connection signal="item_activated" from="MenuItems" to="." method="_on_menu_items_item_activated"]
