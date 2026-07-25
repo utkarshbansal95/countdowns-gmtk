@@ -7,4 +7,4 @@
 script = ExtResource("1_el7wl")
 
 [node name="17957_Hand_cannon_v1" parent="." unique_id=1101786658 instance=ExtResource("2_pp6j5")]
-transform = Transform3D(0.05, -4.371139e-09, -4.371139e-09, -4.371139e-09, -0.05, 0, -4.371139e-09, 3.821371e-16, -0.05, 0, 0, 0)
+transform = Transform3D(2.1855695e-09, -0.05, 4.371139e-09, -0.05, -2.1855695e-09, 0, 1.9106854e-16, -4.371139e-09, -0.05, -0.32243377, -0.008349955, 0)

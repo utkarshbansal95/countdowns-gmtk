@@ -10,7 +10,7 @@ func _process(delta):
 	if using_mouse:
 		var target := _mouse_on_play_plane() #defined below. Gets the vector of mouse from origin
 		var dir := target - global_position   
-		rotation.z = atan2(dir.y, dir.x) - PI / 2.0
+		rotation.z = atan2(dir.y, dir.x)
 	else:
 		if Input.is_action_pressed("clockwise"):
 			rotate_z(-rotation_speed)
