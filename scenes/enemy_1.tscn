@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://c1u3fx3ds2w1w" path="res://scripts/wrappableCharacter.gd" id="1_a1412"]
 [ext_resource type="PackedScene" uid="uid://ciippwgteifmb" path="res://3d Models/UFO Enemy/cute-ufo.blend" id="2_ejytf"]
+[ext_resource type="PackedScene" uid="uid://l2wu6dnauaqs" path="res://scenes/enemy_1turret.tscn" id="3_ejytf"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_dq62l"]
 radius = 0.6015433
 
-[node name="Enemy1" type="CharacterBody3D" unique_id=633503099]
+[node name="Enemy1" type="CharacterBody3D" unique_id=633503099 groups=["enemies"]]
 script = ExtResource("1_a1412")
 metadata/_custom_type_script = "uid://c1u3fx3ds2w1w"
 
@@ -15,3 +16,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.4330127, -0.25, 0, 0.25, 0.4330127, -0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=179301397]
 shape = SubResource("SphereShape3D_dq62l")
+
+[node name="turret" parent="." unique_id=1993196189 instance=ExtResource("3_ejytf")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.22, 0)

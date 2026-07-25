@@ -8,14 +8,16 @@ func _ready():
 
 func _process(delta):
 	if using_mouse:
-		var target := _mouse_on_play_plane() #defined below. Gets the vector of mouse from origin
-		var dir := target - global_position   
+		var dir := _get_aim_target() - global_position   
 		rotation.z = atan2(dir.y, dir.x)
-	else:
-		if Input.is_action_pressed("clockwise"):
-			rotate_z(-rotation_speed)
-		if Input.is_action_pressed("counterclockwise"):
-			rotate_z(rotation_speed)
+	#else:
+	#	if Input.is_action_pressed("clockwise"):
+	#		rotate_z(-rotation_speed)
+	#	if Input.is_action_pressed("counterclockwise"):
+	#		rotate_z(rotation_speed)
+
+func _get_aim_target() -> Vector3:
+	return _mouse_on_play_plane()    #defined below. Gets the vector of mouse from origin
 
 #Got from claude for a 3d get global mouse position
 func _mouse_on_play_plane() -> Vector3:
