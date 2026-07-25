@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name Turret extends CharacterBody3D
 
 @export var rotation_speed := 0.1
 @export var using_mouse := true

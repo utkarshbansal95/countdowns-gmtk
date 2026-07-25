@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cxv3vw2u1cqsx"]
+
+[ext_resource type="Script" uid="uid://c1u3fx3ds2w1w" path="res://scripts/wrappableCharacter.gd" id="1_a1412"]
+[ext_resource type="PackedScene" uid="uid://ciippwgteifmb" path="res://3d Models/UFO Enemy/cute-ufo.blend" id="2_ejytf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dq62l"]
+radius = 0.6015433
+
+[node name="Enemy1" type="CharacterBody3D" unique_id=633503099]
+script = ExtResource("1_a1412")
+metadata/_custom_type_script = "uid://c1u3fx3ds2w1w"
+
+[node name="cute-ufo" parent="." unique_id=230600803 instance=ExtResource("2_ejytf")]
+transform = Transform3D(0.5, 0, 0, 0, 0.4330127, -0.25, 0, 0.25, 0.4330127, -0.004, 0.2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=179301397]
+shape = SubResource("SphereShape3D_dq62l")
