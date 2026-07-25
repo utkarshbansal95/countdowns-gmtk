@@ -2,7 +2,26 @@
 
 [ext_resource type="PackedScene" uid="uid://igc2m8ntqn3c" path="res://scenes/player.tscn" id="1_o5qli"]
 
-[node name="main" type="Node2D" unique_id=393336154]
+[sub_resource type="Environment" id="Environment_0wfyh"]
+background_mode = 1
+ambient_light_color = Color(0.0032215356, 0.14637351, 0.67871016, 1)
+
+[node name="main" type="Node3D" unique_id=585456309]
 
 [node name="player" parent="." unique_id=1455936356 instance=ExtResource("1_o5qli")]
-position = Vector2(640, 360)
+acceleration = 16
+max_speed = 6.0
+damping = 1.2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1270497114]
+transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1957620683]
+environment = SubResource("Environment_0wfyh")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=610923523]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+projection = 1
+current = true
+size = 9.0
