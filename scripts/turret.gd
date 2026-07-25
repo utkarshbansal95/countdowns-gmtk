@@ -6,7 +6,7 @@ extends CharacterBody3D
 func _ready():
 	pass
 
-func _process(delta):
+func _process(_delta):
 	if using_mouse:
 		var target := _mouse_on_play_plane() #defined below. Gets the vector of mouse from origin
 		var dir := target - global_position   

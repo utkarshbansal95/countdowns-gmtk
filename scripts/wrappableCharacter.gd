@@ -2,7 +2,7 @@ class_name WrappableCharacter extends CharacterBody3D
 
 @export var screen_extent:= Vector2(16.0,9.0) #hardcoded
 	
-func _process(delta):
+func _process(_delta):
 	
 	global_position.z = 0.0
 	
