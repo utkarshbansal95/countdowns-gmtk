@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://3mj4wj6l8hik" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://igc2m8ntqn3c" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cxv3vw2u1cqsx" path="res://scenes/enemy_1.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://c5oan04c0ngwf" path="res://scenes/enemy_1.gd" id="4_jyhfs"]
 
 [sub_resource type="Environment" id="Environment_0wfyh"]
 background_mode = 1
@@ -31,6 +33,13 @@ current = true
 size = 9.0
 
 [node name="lasers" type="Node3D" parent="." unique_id=595879013]
+
+[node name="Enemy1" parent="." unique_id=633503099 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, 0)
+script = ExtResource("4_jyhfs")
+acceleration = 40
+max_speed = 8.0
+damping = 3.0
 
 [connection signal="laser_shot" from="player/turret" to="." method="_on_turret_laser_shot"]
 

@@ -1,7 +1,6 @@
 extends Node3D
 
 @onready var lasers = $lasers
-@onready var player = $player
 
 func _ready():
 	pass

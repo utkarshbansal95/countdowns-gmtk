@@ -1,4 +1,4 @@
-class_name Eenemy_Turret extends Turret
+class_name Enemy_Turret extends Turret
 
 var target_group := "player"
 
