@@ -1,4 +1,4 @@
-class_name WrappableCharacter extends CharacterBody3D
+class_name WrappableArea extends Area3D
 
 @export var screen_extent:= Vector2(16.0,9.0) #hardcoded
 	

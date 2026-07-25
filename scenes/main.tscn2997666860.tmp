@@ -1,18 +1,15 @@
 [gd_scene format=3 uid="uid://d2xnlxkknvy30"]
 
-[ext_resource type="Script" uid="uid://3mj4wj6l8hik" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://igc2m8ntqn3c" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cap8y2hyde0o7" path="res://scenes/laser.tscn" id="2_0wfyh"]
 
 [sub_resource type="Environment" id="Environment_0wfyh"]
 background_mode = 1
 ambient_light_color = Color(0.0032215356, 0.14637351, 0.67871016, 1)
 
 [node name="main" type="Node3D" unique_id=585456309]
-script = ExtResource("1_0wfyh")
 
 [node name="player" parent="." unique_id=1455936356 instance=ExtResource("1_o5qli")]
-collision_layer = 2
-collision_mask = 20
 acceleration = 16
 max_speed = 6.0
 damping = 1.2
@@ -30,8 +27,6 @@ projection = 1
 current = true
 size = 9.0
 
-[node name="lasers" type="Node3D" parent="." unique_id=595879013]
-
-[connection signal="laser_shot" from="player/turret" to="." method="_on_turret_laser_shot"]
-
-[editable path="player"]
+[node name="laser" parent="." unique_id=1123376728 instance=ExtResource("2_0wfyh")]
+transform = Transform3D(-8.742278e-09, 0.050751578, -0.19345355, 0, -0.19345355, -0.050751578, -0.2, -2.218422e-09, 8.456123e-09, 0, 0, 0)
+laser_speed = null
