@@ -1,14 +1,17 @@
 class_name enemyclass extends WrappableCharacter
 
 @export var max_speed := 2.0
-@export var acceleration := 30
+@export var acceleration := 30.0
 @export var enemy_rate_of_fire := 1.0
 @export var enemy_laser_color := Color.RED
-@export var max_health = 5
-@export var max_distance_p = 6     #max distance it will try to get from player
-@export var min_distance_p = 3      #obvious from above
+@export var max_health := 5
+@export var max_distance_p := 6.0     #max distance it will try to get from player
+@export var min_distance_p := 3.0      #obvious from above
 
-@onready var health = max_health
+@export var rotation_sp := 40   #Only for animation
+@onready var ship_axis := Vector3 (0, sin (PI/3),cos (PI/3))
+
+@onready var health := max_health
 @onready var turret: Turret = $turret
 @onready var spin := PI/2      #defines what direction the ship tends to spin by default
 
@@ -39,7 +42,7 @@ func _physics_process(delta):
 		velocity=velocity.limit_length(max_speed)
 		var collision_info = move_and_collide(velocity * delta, true)
 		if collision_info:
-			if collision_info.get_collider() is player:
+			if collision_info.get_collider().is_in_group("player"):   #group, not "is player" - that class ref cycles with player.gd
 				velocity = velocity.bounce(collision_info.get_normal())
 				damage()
 
@@ -47,6 +50,9 @@ func _physics_process(delta):
 	if target:
 		turret.aim_at(target.global_position)
 		turret.try_fire()
+		
+	#animation
+	rotate(ship_axis, -spin*deg_to_rad(rotation_sp * delta))
 	
 	move_and_slide()
 	
