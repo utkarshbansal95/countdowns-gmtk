@@ -43,9 +43,9 @@ horizontal_alignment = 1
 
 [node name="FinalScore" type="Label" parent="." unique_id=1875093299]
 offset_left = 560.0
-offset_top = 440.0
+offset_top = 975.0
 offset_right = 1360.0
-offset_bottom = 520.0
+offset_bottom = 1055.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 64
