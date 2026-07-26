@@ -6,6 +6,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
 
 [node name="player" type="CharacterBody3D" unique_id=1562498724 groups=["player"]]
+collision_layer = 2
+collision_mask = 20
 script = ExtResource("1_qhqgy")
 
 [node name="Low_Poly_Spaceship_0052" parent="." unique_id=255899932 instance=ExtResource("4_dqkch")]
