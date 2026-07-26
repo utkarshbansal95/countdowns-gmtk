@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://3mj4wj6l8hik" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://igc2m8ntqn3c" path="res://scenes/player.tscn" id="2_lnu2h"]
+[ext_resource type="AudioStream" uid="uid://blp3ohg10p6rg" path="res://sounds/268557__cydon__explosion_001.mp3" id="3_lbhrr"]
+[ext_resource type="AudioStream" uid="uid://dc4c4y1qk23x1" path="res://sounds/countdownscorestretched.mp3" id="4_iywne"]
 
 [sub_resource type="Environment" id="Environment_0wfyh"]
 background_mode = 1
@@ -77,6 +79,12 @@ max_value = 10.0
 step = 1.0
 rounded = true
 show_percentage = false
+
+[node name="BoomSound" type="AudioStreamPlayer3D" parent="." unique_id=315589385]
+stream = ExtResource("3_lbhrr")
+
+[node name="TimerMusic" type="AudioStreamPlayer3D" parent="." unique_id=1645690922]
+stream = ExtResource("4_iywne")
 
 [connection signal="health_changed" from="player" to="." method="_on_player_health_changed"]
 [connection signal="throw_turret" from="player" to="." method="_on_player_throw_turret"]
