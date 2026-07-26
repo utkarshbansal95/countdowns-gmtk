@@ -6,6 +6,8 @@ extends Node3D
 @onready var enemy1 = preload("res://scenes/enemy_1.tscn")
 @onready var turretbombs = $turretbombs
 @onready var turretbombscene = preload("res://scenes/turretbomb.tscn")
+@onready var splosions = $splosions
+@onready var splosionscene = preload("res://scenes/splosions.tscn")
 @onready var healthbar = $CanvasLayer/HealthBar
 @export var max_enemies = 3
 @export var healthbar_inset := 3.0   # keep in sync with the bar's border width
@@ -63,7 +65,9 @@ func _on_player_health_changed(current):
 	healthbar.value = current
 
 func boom(pos):
-	pass
+	var ss = splosionscene.instantiate()
+	splosions.add_child(ss)
+	ss.global_position = pos
 
 func _on_countdown_timeout():
 	print("Boom")

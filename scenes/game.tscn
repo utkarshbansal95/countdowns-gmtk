@@ -50,7 +50,10 @@ size = 9.0
 [node name="turretbombs" type="Node3D" parent="." unique_id=505293015]
 
 [node name="Countdown" type="Timer" parent="." unique_id=767986747]
-wait_time = 8.0
+wait_time = 10.0
+autostart = true
+
+[node name="splosions" type="Node3D" parent="." unique_id=1700407299]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=3415686]
 
