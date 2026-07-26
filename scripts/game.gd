@@ -18,9 +18,6 @@ func _on_turret_laser_shot(laser, gp, gr):
 	laser.global_position = gp   # gp is already the muzzle position
 	laser.direction = Vector3(cos(gr.z), sin(gr.z), 0)
 	
-func _process(_delta):
-	pass
-	
 func spawn_enemy1():
 	while true:
 		await enemies.get_tree().create_timer(5).timeout
