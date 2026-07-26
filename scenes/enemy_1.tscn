@@ -8,6 +8,8 @@
 radius = 0.6015433
 
 [node name="Enemy1" type="CharacterBody3D" unique_id=633503099 groups=["enemies"]]
+collision_layer = 4
+collision_mask = 30
 script = ExtResource("1_a1412")
 
 [node name="cute-ufo" parent="." unique_id=230600803 instance=ExtResource("2_ejytf")]

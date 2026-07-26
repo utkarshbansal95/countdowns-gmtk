@@ -23,9 +23,18 @@ func spawn_enemy1():
 		await enemies.get_tree().create_timer(5).timeout
 		if enemies.get_child_count() < max_enemies:
 			var enemy = enemy1.instantiate()
-			enemies.add_child(enemy)
-			enemy.turret.laser_shot.connect(_on_turret_laser_shot) 
-			var gp = Vector3(randf_range(-7,7),randf_range(-4,4),0)
-			while gp.distance_to(player.global_position) < 1:
+			var gp: Vector3
+			var redo = true
+			while redo:
 				gp = Vector3(randf_range(-7,7),randf_range(-4,4),0)
+				if gp.distance_to(player.global_position) > 1:
+					redo = false
+				else:
+					continue
+				for i in enemies.get_children():
+					if gp.distance_to(i.global_position) < 1:
+						redo = true
+						break
+			enemies.add_child(enemy)
+			enemy.turret.laser_shot.connect(_on_turret_laser_shot)   # spawned enemies aren't editor-wired
 			enemy.global_position = gp

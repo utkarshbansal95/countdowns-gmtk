@@ -6,10 +6,10 @@
 script = ExtResource("1_l6cm7")
 
 [node name="MenuItems" type="ItemList" parent="." unique_id=1593683751]
-offset_left = 716.0
-offset_top = 326.0
-offset_right = 831.0
-offset_bottom = 417.4
+offset_left = 569.0
+offset_top = 227.0
+offset_right = 742.19995
+offset_bottom = 348.8
 scale = Vector2(5, 5)
 allow_search = false
 wraparound_items = false
