@@ -33,6 +33,7 @@ func _physics_process(delta):
 	if collision_info:
 		if collision_info.get_collider() is enemyclass:
 			velocity = velocity.bounce(collision_info.get_normal())
+			damage()
 		elif (collision_info.get_collider() is tbomb) and !just_thrown:
 			collision_info.get_collider().queue_free()
 			has_turret = true

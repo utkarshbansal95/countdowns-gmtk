@@ -8,6 +8,7 @@ extends Node3D
 @onready var turretbombscene = preload("res://scenes/turretbomb.tscn")
 @export var max_enemies = 3
 
+
 func _ready():
 	spawn_enemy1()
 	
@@ -50,3 +51,16 @@ func _on_player_throw_turret(zrotation: float, pos: Vector3):
 	tb.scale=Vector3(0.4,0.4,0.4)
 	tb.velocity=Vector3(5,0,0).rotated(Vector3(0,0,1),zrotation)
 	tb.move_and_slide()
+
+func boom(pos):
+	pass
+
+func _on_countdown_timeout():
+	if player.has_turret:
+		boom(player.global_position)
+	else:
+		var tbomblocation: Vector3
+		for i in get_children():
+			if i is tbomb:
+				tbomblocation=i.global_position
+		boom(tbomblocation)
