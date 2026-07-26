@@ -31,4 +31,9 @@ surface_material_override/4 = SubResource("StandardMaterial3D_8ln24")
 transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_o5qli")
 
+[node name="justthrown" type="Timer" parent="." unique_id=1306142503]
+wait_time = 0.5
+
+[connection signal="timeout" from="justthrown" to="." method="_on_justthrown_timeout"]
+
 [editable path="Low_Poly_Spaceship_0052"]

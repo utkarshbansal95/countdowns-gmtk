@@ -1,4 +1,4 @@
-class_name enemy extends WrappableCharacter
+class_name enemyclass extends WrappableCharacter
 
 @export var speed := 2.0
 @export var enemy_rate_of_fire := 1.0

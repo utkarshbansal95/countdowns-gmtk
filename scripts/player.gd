@@ -10,9 +10,11 @@ signal throw_turret(zrotation, pos)
 @export var has_turret := true
 @export var max_health = 10
 
+@onready var justthrown = $justthrown
 @onready var health = max_health
 @onready var player_turret_scene = preload("res://scenes/turretequipped.tscn")
 
+var just_thrown = false
 var turret: Turret   # filled by draw_turret(), no longer a scene child
 
 func _ready():
@@ -26,6 +28,16 @@ func _physics_process(delta):
 	velocity=velocity.lerp(Vector3(0,0,0),damping*delta)
 
 	move_and_slide()
+	
+	var collision_info = move_and_collide(velocity * delta, true)
+	if collision_info:
+		if collision_info.get_collider() is enemyclass:
+			velocity = velocity.bounce(collision_info.get_normal())
+		elif (collision_info.get_collider() is tbomb) and !just_thrown:
+			collision_info.get_collider().queue_free()
+			has_turret = true
+			draw_turret()
+			
 
 func _process(delta):
 	super._process(delta)   # keeps WrappableCharacter's screen wrap alive
@@ -43,15 +55,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("throw"):
 		emit_signal ("throw_turret", turret.rotation.z,turret.global_position)
 		turret.queue_free()
-		has_turret=false
-	var collision_info = move_and_collide(velocity * delta, true)
-	if collision_info:
-		if collision_info.get_collider() is enemy:
-			velocity = velocity.bounce(collision_info.get_normal())
-		elif collision_info.get_collider() is tbomb:
-			has_turret = true
-			draw_turret()
-
+		has_turret = false
+		just_thrown = true
+		justthrown.start()
+	
 #Got from claude for a 3d get global mouse position
 func _mouse_on_play_plane() -> Vector3:
 	var cam := get_viewport().get_camera_3d()
@@ -80,3 +87,7 @@ func damage(dmg = 1):
 
 func die():
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/main_menu.tscn")
+
+
+func _on_justthrown_timeout():
+	just_thrown = false
