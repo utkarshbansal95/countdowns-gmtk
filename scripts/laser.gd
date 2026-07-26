@@ -4,6 +4,8 @@ extends WrappableArea
 @export var color := Color(0.3, 0.6, 1.0)
 
 var direction := Vector3.RIGHT
+var shooter: Node
+
 
 func _ready():
 	var mat := StandardMaterial3D.new()
@@ -16,4 +18,13 @@ func _physics_process(delta):
 
 
 func _on_timer_timeout():
+	queue_free()
+
+func _on_body_entered(body):
+	if body == shooter:   # muzzle sits inside the enemy's own collider
+		return
+	if "health" in body:
+		body.health -= 1 #damage
+		if body.health <= 0:
+			body.die()
 	queue_free()

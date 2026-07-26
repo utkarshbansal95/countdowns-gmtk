@@ -24,7 +24,8 @@ func try_fire() -> void:
 
 func shoot_laser():
 	var l = laser_scene.instantiate()
-	l.color = laser_color   # set before add_child so laser._ready() picks it up
+	l.color = laser_color
+	l.shooter = get_parent()
 	var d := muzzle.global_position - global_position
 	var ang := atan2(d.y, d.x)   # from world positions, so scale sign can't flip it
 	emit_signal("laser_shot", l, muzzle.global_position, Vector3(0,0,ang))

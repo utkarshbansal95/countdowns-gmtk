@@ -66,3 +66,6 @@ func draw_turret():
 
 func throw_turret(dir, pos):
 	pass
+
+func die():
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

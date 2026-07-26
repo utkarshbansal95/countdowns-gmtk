@@ -27,3 +27,6 @@ func _process(_delta):
 	if target:
 		turret.aim_at(target.global_position)
 		turret.try_fire()
+
+func die():
+	queue_free()
