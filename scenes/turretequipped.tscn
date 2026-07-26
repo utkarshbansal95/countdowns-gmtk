@@ -7,7 +7,7 @@
 script = ExtResource("1_b7fya")
 
 [node name="17957_Hand_cannon_v1" parent="." unique_id=1101786658 instance=ExtResource("2_0ms65")]
-transform = Transform3D(2.1855695e-09, 0.05, -4.371139e-09, 0.05, -2.1855695e-09, 0, -1.9106854e-16, -4.371139e-09, -0.05, 0.27, -0.008, 0.2)
+transform = Transform3D(2.185569e-09, 0.05, -4.371139e-09, -0.05, 2.1855695e-09, 4.371139e-09, 4.3711395e-09, 4.3711386e-09, 0.05, 0.27, -0.008, 0.2)
 
 [node name="Muzzle" type="Marker3D" parent="." unique_id=1447920365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
