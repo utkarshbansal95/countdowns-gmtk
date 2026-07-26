@@ -1,5 +1,7 @@
 extends WrappableCharacter
 
+signal throw_turret(zrotation, pos)
+
 @export var acceleration := 40
 @export var max_speed := 8.0
 @export var damping := 3.0
@@ -39,7 +41,7 @@ func _process(_delta):
 	if Input.is_action_pressed("fire"):
 		turret.try_fire()
 	if Input.is_action_just_pressed("throw"):
-		throw_turret(_mouse_on_play_plane(),turret.global_position)
+		emit_signal ("throw_turret", turret.rotation.z,turret.global_position)
 		turret.queue_free()
 		has_turret=false
 
@@ -63,9 +65,6 @@ func draw_turret():
 	var g := get_parent()   # replaces the editor wire, which can't survive a runtime turret
 	if g and g.has_method("_on_turret_laser_shot"):
 		turret.laser_shot.connect(g._on_turret_laser_shot)
-
-func throw_turret(dir, pos):
-	pass
 
 func die():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

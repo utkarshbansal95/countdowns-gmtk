@@ -35,3 +35,7 @@ size = 9.0
 [node name="lasers" type="Node3D" parent="." unique_id=595879013]
 
 [node name="enemies" type="Node3D" parent="." unique_id=1010763645]
+
+[node name="turretbombs" type="Node3D" parent="." unique_id=505293015]
+
+[connection signal="throw_turret" from="player" to="." method="_on_player_throw_turret"]
