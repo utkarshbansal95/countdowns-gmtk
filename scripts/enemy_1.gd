@@ -1,5 +1,7 @@
 class_name enemyclass extends WrappableCharacter
 
+signal died
+
 @export var max_speed := 2.0
 @export var acceleration := 30.0
 @export var enemy_rate_of_fire := 1.0
@@ -81,4 +83,5 @@ func damage(dmg = 1):   # Animation/sfx for taking damage (Here or maybe on type
 		die()
 
 func die():   # Animation to be added for death here if I have time
+	emit_signal("died")
 	queue_free()

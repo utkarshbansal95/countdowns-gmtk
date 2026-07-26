@@ -14,6 +14,7 @@ extends Node3D
 @onready var countdown = $Countdown
 @onready var boomtimer = $CanvasLayer/BoomTimer
 @onready var boomcount = $CanvasLayer/BoomTimer/Count
+@onready var scorelabel = $CanvasLayer/Score
 
 @export var max_enemies = 3
 @export var healthbar_inset := 3.0   # keep in sync with the bars' border width
@@ -22,6 +23,7 @@ extends Node3D
 var boom_fill: StyleBoxFlat
 var boom_fill_danger: StyleBoxFlat
 var boom_left := -1
+var score := 0
 
 
 # ProgressBar paints its fill across the whole rect, which covers the border at full value.
@@ -42,6 +44,7 @@ func _ready():
 
 	healthbar.max_value = playerscene.max_health   # seed here, not from the player - our @onready vars aren't up yet during its _ready
 	healthbar.value = playerscene.health
+	scorelabel.text = "Score: 0"
 	spawn_enemy1()
 	await get_tree().create_timer(2.0).timeout
 	timermusic.play()
@@ -82,6 +85,7 @@ func spawn_enemy1():
 						break
 			enemies.add_child(enemy)
 			enemy.turret.laser_shot.connect(_on_turret_laser_shot)   # spawned enemies aren't editor-wired
+			enemy.died.connect(_on_enemy_died)
 			enemy.global_position = gp
 
 
@@ -96,6 +100,10 @@ func _on_player_throw_turret(zrotation: float, pos: Vector3):
 
 func _on_player_health_changed(current):
 	healthbar.value = current
+
+func _on_enemy_died():
+	score += 1
+	scorelabel.text = "Score: %d" % score
 
 func boom(pos):
 	var ss = splosionscene.instantiate()
