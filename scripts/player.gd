@@ -1,4 +1,4 @@
-extends WrappableCharacter
+class_name player extends WrappableCharacter
 
 signal throw_turret(zrotation, pos)
 

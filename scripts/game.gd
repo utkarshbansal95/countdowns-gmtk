@@ -2,7 +2,7 @@ extends Node3D
 
 @onready var lasers = $lasers
 @onready var enemies = $enemies
-@onready var player = $player
+@onready var playerscene = $player
 @onready var enemy1 = preload("res://scenes/enemy_1.tscn")
 @onready var turretbombs = $turretbombs
 @onready var turretbombscene = preload("res://scenes/turretbomb.tscn")
@@ -27,7 +27,7 @@ func spawn_enemy1():
 			var redo = true
 			while redo:
 				gp = Vector3(randf_range(-7,7),randf_range(-4,4),0)
-				if gp.distance_to(player.global_position) > 1:
+				if gp.distance_to(playerscene.global_position) > 1:
 					redo = false
 				else:
 					continue
@@ -53,8 +53,8 @@ func boom(pos):
 	pass
 
 func _on_countdown_timeout():
-	if player.has_turret:
-		boom(player.global_position)
+	if playerscene.has_turret:
+		boom(playerscene.global_position)
 	else:
 		var tbomblocation: Vector3
 		for i in turretbombs.get_children():

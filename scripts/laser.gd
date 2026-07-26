@@ -1,4 +1,4 @@
-extends WrappableArea
+extends Area3D
 
 @export var laser_speed := 8.0
 @export var color := Color(0.3, 0.6, 1.0)
