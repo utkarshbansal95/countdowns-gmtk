@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dc152dibft8w0"]
+
+[ext_resource type="Script" uid="uid://bnegccwqhylx" path="res://scripts/turretbomb.gd" id="1_0omr4"]
+[ext_resource type="PackedScene" uid="uid://ckg7saw4koo3p" path="res://3d Models/17957_Hand_cannon_v1.obj" id="2_ss1iq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qbsvf"]
+radius = 0.16357422
+height = 2.1357422
+
+[node name="turretbomb" type="Node3D" unique_id=278770992]
+script = ExtResource("1_0omr4")
+
+[node name="17957_Hand_cannon_v1" parent="." unique_id=691261060 instance=ExtResource("2_ss1iq")]
+transform = Transform3D(3.7748946e-09, 0.05, -4.3711386e-09, -0.05, 3.774895e-09, 4.3711395e-09, 4.37114e-09, 4.371138e-09, 0.05, 0.27, -0.008, 0.2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2122616965]
+transform = Transform3D(-3.059797e-08, -0.7, 0, 0.7, -3.059797e-08, 0, 0, 0, 0.7, 0.248, 0, 0.38)
+shape = SubResource("CapsuleShape3D_qbsvf")
