@@ -45,9 +45,27 @@ func _ready():
 	healthbar.max_value = playerscene.max_health   # seed here, not from the player - our @onready vars aren't up yet during its _ready
 	healthbar.value = playerscene.health
 	scorelabel.text = "Score: 0"
+	_warm_explosion_shader()   # not awaited - must never be able to stall the rest of _ready
 	spawn_enemy1()
 	await get_tree().create_timer(2.0).timeout
 	timermusic.play()
+
+
+# The explosion shader only compiles the first time it's actually drawn, which would be the
+# first boom - mid-fight, worst possible moment. Draw one sub-pixel copy now and eat it here.
+func _warm_explosion_shader() -> void:
+	var w = splosionscene.instantiate()
+	w.set_process(false)   # otherwise it runs its lifetime and rewrites the hitbox radius
+	splosions.add_child(w)
+	w.monitoring = false
+	w.scale = Vector3.ONE * 0.001
+	w.global_position = playerscene.global_position
+	w.get_node("Fire").material_override.set_shader_parameter("progress", 0.4)
+	# process_frame, not RenderingServer.frame_post_draw - the latter never fires headless,
+	# which left this coroutine hung and leaking the node on every dedicated-server run.
+	for _i in 3:
+		await get_tree().process_frame
+	w.queue_free()
 
 
 func _process(_delta):

@@ -7,12 +7,22 @@ extends Area3D
 var direction := Vector3.RIGHT
 var shooter: Node
 
+# One material per colour, shared by every laser. A fresh StandardMaterial3D per shot was
+# ~13 allocs/sec at the RenderingServer, and meant no two lasers could ever batch.
+static var _mats: Dictionary = {}
+
+static func _mat_for(c: Color) -> StandardMaterial3D:
+	var m: StandardMaterial3D = _mats.get(c)
+	if m == null:
+		m = StandardMaterial3D.new()
+		m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+		m.albedo_color = c
+		_mats[c] = m
+	return m
+
 
 func _ready():
-	var mat := StandardMaterial3D.new()
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.albedo_color = color
-	$Blue2/Blue.material_override = mat
+	$Blue2/Blue.material_override = _mat_for(color)
 
 func _physics_process(delta):
 	global_position += direction * laser_speed * delta
