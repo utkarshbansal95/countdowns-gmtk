@@ -36,6 +36,10 @@ func _process(_delta):
 			turret.rotate_z(rotation_speed)
 	if Input.is_action_pressed("fire"):
 		turret.try_fire()
+	if Input.is_action_just_pressed("throw"):
+		throw_turret(_mouse_on_play_plane(),turret.global_position)
+		turret.queue_free()
+		has_turret=false
 
 #Got from claude for a 3d get global mouse position
 func _mouse_on_play_plane() -> Vector3:
@@ -57,3 +61,6 @@ func draw_turret():
 	var g := get_parent()   # replaces the editor wire, which can't survive a runtime turret
 	if g and g.has_method("_on_turret_laser_shot"):
 		turret.laser_shot.connect(g._on_turret_laser_shot)
+
+func throw_turret(dir, pos):
+	pass

@@ -17,5 +17,5 @@ transform = Transform3D(2.185569e-09, 0.05, -4.371139e-09, -0.05, 2.1855695e-09,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1165543029]
-transform = Transform3D(-3.059797e-08, -0.7, 0, 0.7, -3.059797e-08, 0, 0, 0, 0.7, 0.24750976, 2.0767177e-09, 0)
+transform = Transform3D(-3.059797e-08, -0.7, 0, 0.7, -3.059797e-08, 0, 0, 0, 0.7, 0.248, 0, 0.38)
 shape = SubResource("CapsuleShape3D_qbsvf")
