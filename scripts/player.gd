@@ -116,6 +116,5 @@ func damage(dmg = 1):
 func die():
 	get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")
 
-
 func _on_justthrown_timeout():
 	just_thrown = false

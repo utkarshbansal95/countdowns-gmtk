@@ -20,7 +20,6 @@ func _on_menu_items_item_activated(index: int) -> void:
 			howtoplay.visible = true
 		else:
 			howtoplay.visible=false
-
-
+			
 func _on_menu_items_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
 	menu.emit_signal("item_activated", index)
