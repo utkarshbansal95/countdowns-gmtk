@@ -9,6 +9,9 @@ extends Node3D
 @onready var splosions = $splosions
 @onready var splosionscene = preload("res://scenes/splosions.tscn")
 @onready var healthbar = $CanvasLayer/HealthBar
+@onready var boomsound = $BoomSound
+@onready var timermusic = $TimerMusic
+
 @export var max_enemies = 3
 @export var healthbar_inset := 3.0   # keep in sync with the bar's border width
 
@@ -70,6 +73,7 @@ func boom(pos):
 	ss.global_position = pos
 
 func _on_countdown_timeout():
+	boomsound.play()
 	print("Boom")
 	if playerscene.has_turret:
 		boom(playerscene.global_position)
@@ -79,3 +83,5 @@ func _on_countdown_timeout():
 			if i is tbomb:
 				tbomblocation=i.global_position
 		boom(tbomblocation)
+	await get_tree().create_timer(2.0).timeout
+	timermusic.play()
