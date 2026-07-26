@@ -34,3 +34,4 @@ Right click to throw"
 horizontal_alignment = 1
 
 [connection signal="item_activated" from="MenuItems" to="." method="_on_menu_items_item_activated"]
+[connection signal="item_clicked" from="MenuItems" to="." method="_on_menu_items_item_clicked"]
