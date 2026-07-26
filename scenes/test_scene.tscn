@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bqtx7mv3nk2ws"]
+
+[ext_resource type="Script" path="res://scripts/test_game.gd" id="1_tstgm"]
+[ext_resource type="PackedScene" uid="uid://igc2m8ntqn3c" path="res://scenes/player.tscn" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://cxv3vw2u1cqsx" path="res://scenes/enemy_1.tscn" id="3_sugp2"]
+
+[sub_resource type="Environment" id="Environment_0wfyh"]
+background_mode = 1
+ambient_light_color = Color(0.0032215356, 0.14637351, 0.67871016, 1)
+
+[node name="test_scene" type="Node3D"]
+script = ExtResource("1_tstgm")
+
+[node name="player" parent="." instance=ExtResource("2_lnu2h")]
+collision_layer = 2
+collision_mask = 20
+acceleration = 16
+max_speed = 6.0
+damping = 1.2
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0wfyh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+projection = 1
+current = true
+size = 9.0
+
+[node name="lasers" type="Node3D" parent="."]
+
+[node name="Enemy1" parent="." instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 0)
+
+[connection signal="laser_shot" from="player/turret" to="." method="_on_turret_laser_shot"]
+[connection signal="laser_shot" from="Enemy1/turret" to="." method="_on_turret_laser_shot"]
+
+[editable path="player"]
+[editable path="Enemy1"]

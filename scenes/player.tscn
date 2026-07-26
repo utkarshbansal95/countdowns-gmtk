@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
 
-[node name="player" type="CharacterBody3D" unique_id=1562498724]
+[node name="player" type="CharacterBody3D" unique_id=1562498724 groups=["player"]]
 script = ExtResource("1_qhqgy")
 
 [node name="Low_Poly_Spaceship_0052" parent="." unique_id=255899932 instance=ExtResource("4_dqkch")]
@@ -17,4 +17,4 @@ transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_o5qli")
 
 [node name="turret" parent="." unique_id=1831526037 instance=ExtResource("2_g2els")]
-transform = Transform3D(-0.4, 0, 0, 0, -0.4, 0, 0, 0, -0.4, -0.005, 0.16, 0.2)
+transform = Transform3D(-0.4, 3.4969112e-08, 0, -3.4969112e-08, -0.4, 0, 0, 0, 0.4, -0.005, 0.16, 0.2)
