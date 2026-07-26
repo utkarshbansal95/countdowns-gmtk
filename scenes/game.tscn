@@ -37,5 +37,11 @@ size = 9.0
 [node name="Countdown" type="Timer" parent="." unique_id=767986747]
 wait_time = 8.0
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=3415686]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=391851410]
+offset_right = 478.0
+offset_bottom = 97.0
+
 [connection signal="throw_turret" from="player" to="." method="_on_player_throw_turret"]
 [connection signal="timeout" from="Countdown" to="." method="_on_countdown_timeout"]
