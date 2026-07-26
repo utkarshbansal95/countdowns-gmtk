@@ -66,5 +66,10 @@ func draw_turret():
 	if g and g.has_method("_on_turret_laser_shot"):
 		turret.laser_shot.connect(g._on_turret_laser_shot)
 
+func damage(dmg = 1):
+	health -= dmg
+	if health <= 0:
+		die()
+
 func die():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
