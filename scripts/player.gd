@@ -10,13 +10,21 @@ signal health_changed(current)
 @export var rotation_speed := 0.1
 @export var has_turret := true
 @export var max_health := 10
+@export var turn_speed := 12.0        # how fast the mesh swings to a new heading
+@export var mesh_angle_offset := 0.0  # degrees, in case the model's nose isn't local +Y
 
+@onready var mesh: Node3D = $Low_Poly_Spaceship_0052
+@onready var mesh_scale: Vector3 = mesh.scale      # the basis rebuild in _tilt_mesh wipes the 0.1 scale otherwise
+@onready var mesh_pivot: Vector3 = mesh.position   # the ship spins about this, not about the player origin
 @onready var justthrown = $justthrown
 @onready var health := max_health
 @onready var player_turret_scene = preload("res://scenes/turretequipped.tscn")
 
 var just_thrown = false
 var turret: Turret   # filled by draw_turret(), no longer a scene child
+var face_angle := 0.0
+
+const TURRET_MOUNT := Vector3(-0.005, 0.16, 0.2)   # where the gun sits at face_angle 0
 
 func _ready():
 	draw_turret()
@@ -27,6 +35,8 @@ func _physics_process(delta):
 	velocity += input_vector*acceleration*delta
 	velocity=velocity.limit_length(max_speed)
 	velocity=velocity.lerp(Vector3(0,0,0),damping*delta)
+
+	_tilt_mesh(input_vector, delta)
 
 	move_and_slide()
 	
@@ -61,6 +71,21 @@ func _process(delta):
 		just_thrown = true
 		justthrown.start()
 	
+# Only the mesh turns, not the body - the collision shape and the body's own transform stay put
+func _tilt_mesh(input_vector: Vector3, delta: float) -> void:
+	if input_vector.length_squared() > 0.01:
+		var target_angle := atan2(input_vector.y, input_vector.x) - PI/2 + deg_to_rad(mesh_angle_offset)
+		face_angle = lerp_angle(face_angle, target_angle, turn_speed * delta)
+
+	mesh.transform.basis = Basis(Vector3.BACK, face_angle).scaled(mesh_scale)
+
+	if turret:
+		turret.position = _turret_mount_pos()
+
+# swung about the mesh's pivot, not the player origin, or the gun drifts off the hull
+func _turret_mount_pos() -> Vector3:
+	return mesh_pivot + Basis(Vector3.BACK, face_angle) * (TURRET_MOUNT - mesh_pivot)
+
 #Got from claude for a 3d get global mouse position
 func _mouse_on_play_plane() -> Vector3:
 	var cam := get_viewport().get_camera_3d()
@@ -77,7 +102,7 @@ func draw_turret():
 	turret = player_turret_scene.instantiate()
 	add_child(turret)
 	turret.scale = Vector3(0.4,0.4,0.4)
-	turret.position = Vector3(-0.005, 0.16, 0.2)
+	turret.position = _turret_mount_pos()
 	var g := get_parent()   # replaces the editor wire, which can't survive a runtime turret
 	if g and g.has_method("_on_turret_laser_shot"):
 		turret.laser_shot.connect(g._on_turret_laser_shot)
