@@ -2,9 +2,11 @@ extends Node2D
 
 @onready var howtoplay = $"How to Play"
 @onready var menu = $MenuItems
+@onready var finalscore = $FinalScore
 
 func _ready() -> void:
 	howtoplay.visible=false
+	finalscore.text = "Score: %d" % Game.score
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

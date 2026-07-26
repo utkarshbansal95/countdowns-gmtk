@@ -1,4 +1,4 @@
-extends Node3D
+class_name Game extends Node3D
 
 @onready var lasers = $lasers
 @onready var enemies = $enemies
@@ -23,7 +23,8 @@ extends Node3D
 var boom_fill: StyleBoxFlat
 var boom_fill_danger: StyleBoxFlat
 var boom_left := -1
-var score := 0
+# static so it outlives this scene - the game over screen reads it after change_scene_to_file
+static var score := 0
 
 
 # ProgressBar paints its fill across the whole rect, which covers the border at full value.
@@ -44,6 +45,7 @@ func _ready():
 
 	healthbar.max_value = playerscene.max_health   # seed here, not from the player - our @onready vars aren't up yet during its _ready
 	healthbar.value = playerscene.health
+	score = 0   # static, so a replay would otherwise carry the last run's score in
 	scorelabel.text = "Score: 0"
 	_warm_explosion_shader()   # not awaited - must never be able to stall the rest of _ready
 	spawn_enemy1()

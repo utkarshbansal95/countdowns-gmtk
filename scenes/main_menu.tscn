@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://5jh6ghfqtw8m"]
 
 [ext_resource type="Script" uid="uid://cnyy1tkgoi71i" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://d2x6nk2nii1k1" path="res://sprites/FCI Logo.png" id="2_ekxnf"]
 
 [node name="MainMenu" type="Node2D" unique_id=1875093260]
 script = ExtResource("1_l6cm7")
@@ -18,9 +19,9 @@ item_0/text = "Start Game"
 item_1/text = "How to Play"
 
 [node name="How to Play" type="RichTextLabel" parent="." unique_id=653432012]
-offset_left = 624.0
+offset_left = 615.0
 offset_top = 583.0
-offset_right = 998.0
+offset_right = 989.0
 offset_bottom = 770.5
 scale = Vector2(2, 2)
 text = "Shoot at enemy ships with your turret.
@@ -32,6 +33,11 @@ Mouse to aim
 Left click to shoot
 Right click to throw"
 horizontal_alignment = 1
+
+[node name="FciLogo" type="Sprite2D" parent="." unique_id=1029756549]
+position = Vector2(1779, 934.00006)
+scale = Vector2(0.24414063, 0.24414063)
+texture = ExtResource("2_ekxnf")
 
 [connection signal="item_activated" from="MenuItems" to="." method="_on_menu_items_item_activated"]
 [connection signal="item_clicked" from="MenuItems" to="." method="_on_menu_items_item_clicked"]
