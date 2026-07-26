@@ -60,7 +60,7 @@ func _on_countdown_timeout():
 		boom(player.global_position)
 	else:
 		var tbomblocation: Vector3
-		for i in get_children():
+		for i in turretbombs.get_children():
 			if i is tbomb:
 				tbomblocation=i.global_position
 		boom(tbomblocation)
