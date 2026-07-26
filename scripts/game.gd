@@ -6,6 +6,8 @@ extends Node3D
 @onready var enemy1 = preload("res://scenes/enemy_1.tscn")
 @onready var turretbombs = $turretbombs
 @onready var turretbombscene = preload("res://scenes/turretbomb.tscn")
+@onready var splosions = $splosions
+@onready var splosionscene = preload("res://scenes/splosions.tscn")
 @export var max_enemies = 3
 
 
@@ -53,7 +55,9 @@ func _on_player_throw_turret(zrotation: float, pos: Vector3):
 	tb.move_and_slide()
 
 func boom(pos):
-	pass
+	var ss = splosionscene.instantiate()
+	splosions.add_child(ss)
+	ss.global_position = pos
 
 func _on_countdown_timeout():
 	if playerscene.has_turret:
