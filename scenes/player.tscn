@@ -3,14 +3,37 @@
 [ext_resource type="Script" uid="uid://cyjysxmdpyujm" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://dwnne8s0jjyl" path="res://3d Models/Low_Poly_Spaceship_005.blend" id="4_dqkch"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtw2f"]
+albedo_color = Color(0.9372549, 0, 0.050980393, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bqqt6"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ln24"]
+albedo_color = Color(0.6784314, 0.79607844, 0.7490196, 0.49803922)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
 
 [node name="player" type="CharacterBody3D" unique_id=1562498724 groups=["player"]]
 script = ExtResource("1_qhqgy")
+acceleration = null
+max_speed = null
+damping = null
+using_mouse = null
+rotation_speed = null
+has_turret = null
+screen_extent = null
 
 [node name="Low_Poly_Spaceship_0052" parent="." unique_id=255899932 instance=ExtResource("4_dqkch")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.4, 0)
 
+[node name="Low_Poly_Spaceship_005_001" parent="Low_Poly_Spaceship_0052/Low_Poly_Spaceship_005" parent_id_path=PackedInt32Array(255899932, 598970980) index="0" unique_id=790109325]
+surface_material_override/1 = SubResource("StandardMaterial3D_rtw2f")
+surface_material_override/2 = SubResource("StandardMaterial3D_bqqt6")
+surface_material_override/4 = SubResource("StandardMaterial3D_8ln24")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=722161618]
 transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_o5qli")
+
+[editable path="Low_Poly_Spaceship_0052"]

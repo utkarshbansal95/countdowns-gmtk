@@ -13,10 +13,9 @@ offset_bottom = 417.4
 scale = Vector2(5, 5)
 allow_search = false
 wraparound_items = false
-item_count = 4
+item_count = 3
 item_0/text = "Start Game"
 item_1/text = "Controls"
 item_2/text = "Credits"
-item_3/text = "Test"
 
 [connection signal="item_activated" from="MenuItems" to="." method="_on_menu_items_item_activated"]

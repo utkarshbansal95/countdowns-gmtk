@@ -1,9 +1,11 @@
 extends WrappableCharacter
 
-@export var speed := 3.0
+@export var speed := 2.0
 @export var enemy_rate_of_fire := 1.0
 @export var enemy_laser_color := Color.RED
+@export var max_health = 3
 
+@onready var health = max_health
 @onready var turret: Turret = $turret
 
 var target: Node3D
