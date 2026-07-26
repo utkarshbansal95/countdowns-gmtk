@@ -1,12 +1,8 @@
 extends WrappableCharacter
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	pass
+	
 func _physics_process(delta):
-	velocity=Vector3(10,0,0)
+	velocity=velocity.lerp(Vector3(0,0,0), 0.01)
 	move_and_slide()

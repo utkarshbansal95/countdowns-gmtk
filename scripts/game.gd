@@ -4,6 +4,8 @@ extends Node3D
 @onready var enemies = $enemies
 @onready var player = $player
 @onready var enemy1 = preload("res://scenes/enemy_1.tscn")
+@onready var turretbombs = $turretbombs
+@onready var turretbombscene = preload("res://scenes/turretbomb.tscn")
 
 func _ready():
 	spawn_enemy1()
@@ -36,3 +38,13 @@ func spawn_enemy1():
 						break
 			enemies.add_child(enemy)
 			enemy.global_position = gp
+
+
+func _on_player_throw_turret(zrotation: float, pos: Vector3):
+	var tb = turretbombscene.instantiate()
+	turretbombs.add_child(tb)
+	tb.rotate(Vector3(0,0,1),zrotation)
+	tb.global_position = pos
+	tb.scale=Vector3(0.4,0.4,0.4)
+	tb.velocity=Vector3(5,0,0).rotated(Vector3(0,0,1),zrotation)
+	tb.move_and_slide()
