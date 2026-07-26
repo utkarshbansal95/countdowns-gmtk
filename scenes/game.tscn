@@ -8,6 +8,11 @@
 [sub_resource type="Environment" id="Environment_0wfyh"]
 background_mode = 1
 ambient_light_color = Color(0.0032215356, 0.14637351, 0.67871016, 1)
+glow_enabled = true
+glow_intensity = 1.2
+glow_bloom = 0.15
+glow_blend_mode = 0
+glow_hdr_threshold = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hptrack"]
 bg_color = Color(0.15, 0.03, 0.03, 0.6)
@@ -19,6 +24,21 @@ border_color = Color(1, 1, 1, 0.9)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpfill"]
 bg_color = Color(0.85, 0.13, 0.13, 1)
+expand_margin_left = -3.0
+expand_margin_top = -3.0
+expand_margin_right = -3.0
+expand_margin_bottom = -3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bttrack"]
+bg_color = Color(0.05, 0.04, 0.12, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 0.9)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btfill"]
+bg_color = Color(1, 0.6, 0.1, 1)
 expand_margin_left = -3.0
 expand_margin_top = -3.0
 expand_margin_right = -3.0
@@ -72,13 +92,30 @@ show_percentage = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -57.0
-offset_bottom = 50.0
+offset_left = -340.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 48.0
 grow_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_bttrack")
+theme_override_styles/fill = SubResource("StyleBoxFlat_btfill")
 max_value = 10.0
 step = 1.0
 rounded = true
 show_percentage = false
+
+[node name="Count" type="Label" parent="CanvasLayer/BoomTimer" unique_id=1261508580]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.8)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BoomSound" type="AudioStreamPlayer3D" parent="." unique_id=315589385]
 stream = ExtResource("3_lbhrr")

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bqtx7mv3nk2ws"]
+[gd_scene format=3 uid="uid://drd4xq61u0fyi"]
 
 [ext_resource type="Script" uid="uid://b0r4j0fn81a1p" path="res://scripts/test_game.gd" id="1_tstgm"]
 [ext_resource type="PackedScene" uid="uid://igc2m8ntqn3c" path="res://scenes/player.tscn" id="2_lnu2h"]
@@ -12,8 +12,6 @@ ambient_light_color = Color(0.0032215356, 0.14637351, 0.67871016, 1)
 script = ExtResource("1_tstgm")
 
 [node name="player" parent="." unique_id=1314703427 instance=ExtResource("2_lnu2h")]
-collision_layer = 2
-collision_mask = 20
 acceleration = 16
 max_speed = 6.0
 damping = 1.2
@@ -35,6 +33,8 @@ size = 9.0
 
 [node name="Enemy1" parent="." unique_id=2040462749 instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 0)
+collision_layer = 1
+collision_mask = 1
 
 [connection signal="laser_shot" from="Enemy1/turret" to="." method="_on_turret_laser_shot"]
 

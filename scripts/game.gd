@@ -11,24 +11,52 @@ extends Node3D
 @onready var healthbar = $CanvasLayer/HealthBar
 @onready var boomsound = $BoomSound
 @onready var timermusic = $TimerMusic
+@onready var countdown = $Countdown
+@onready var boomtimer = $CanvasLayer/BoomTimer
+@onready var boomcount = $CanvasLayer/BoomTimer/Count
 
 @export var max_enemies = 3
-@export var healthbar_inset := 3.0   # keep in sync with the bar's border width
+@export var healthbar_inset := 3.0   # keep in sync with the bars' border width
+@export var boom_danger_at := 3
+@export var boom_danger_color := Color(1, 0.15, 0.05)
+var boom_fill: StyleBoxFlat
+var boom_fill_danger: StyleBoxFlat
+var boom_left := -1
+
+
+# ProgressBar paints its fill across the whole rect, which covers the border at full value.
+# Has to be done here - the inspector won't take a negative expand margin.
+func inset_fill(sb: StyleBoxFlat):
+	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]:
+		sb.set_expand_margin(side, -healthbar_inset)
 
 
 func _ready():
-	# ProgressBar paints its fill across the whole rect, which covers the border at full health.
-	# Has to be set here - the inspector won't take a negative expand margin.
-	var fill: StyleBoxFlat = healthbar.get_theme_stylebox("fill")
-	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]:
-		fill.set_expand_margin(side, -healthbar_inset)
+	inset_fill(healthbar.get_theme_stylebox("fill"))
+
+	boom_fill = boomtimer.get_theme_stylebox("fill")
+	inset_fill(boom_fill)
+	boom_fill_danger = boom_fill.duplicate()   # duplicate so the danger box keeps the borders and margins
+	boom_fill_danger.bg_color = boom_danger_color
+	boomtimer.max_value = countdown.wait_time
 
 	healthbar.max_value = playerscene.max_health   # seed here, not from the player - our @onready vars aren't up yet during its _ready
 	healthbar.value = playerscene.health
 	spawn_enemy1()
 	await get_tree().create_timer(2.0).timeout
 	timermusic.play()
-	
+
+
+func _process(_delta):
+	var left := ceili(countdown.time_left)
+	if left == boom_left:
+		return   # only touch the UI when the whole number ticks over
+	boom_left = left
+	boomtimer.value = left
+	boomcount.text = str(left)
+	boomtimer.add_theme_stylebox_override("fill", boom_fill_danger if left <= boom_danger_at else boom_fill)
+
+
 func _on_turret_laser_shot(laser, gp, gr):
 	lasers.add_child(laser)   # must be in tree before setting global_*
 	laser.global_rotation = gr

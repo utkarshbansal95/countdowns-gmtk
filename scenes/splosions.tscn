@@ -1,13 +1,28 @@
-[gd_scene format=3 uid="uid://b45x7faawi4g7"]
+[gd_scene load_steps=5 format=3 uid="uid://b45x7faawi4g7"]
 
 [ext_resource type="Script" uid="uid://bgxc442mssqhl" path="res://scripts/splosions.gd" id="1_jlcrt"]
+[ext_resource type="Shader" path="res://shaders/explosion.gdshader" id="2_fire"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qbsvf"]
+resource_local_to_scene = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_fire"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fire"]
+resource_local_to_scene = true
+shader = ExtResource("2_fire")
+shader_parameter/progress = 0.0
 
 [node name="splosions" type="Area3D" unique_id=509705763]
+collision_mask = 6
 script = ExtResource("1_jlcrt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=316523069]
 shape = SubResource("SphereShape3D_qbsvf")
+
+[node name="Fire" type="MeshInstance3D" parent="." unique_id=1088340021]
+material_override = SubResource("ShaderMaterial_fire")
+mesh = SubResource("QuadMesh_fire")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
