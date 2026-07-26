@@ -7,6 +7,20 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_dq62l"]
 radius = 0.6015433
 
+[sub_resource type="QuadMesh" id="QuadMesh_hptrack"]
+size = Vector2(0.84, 0.14)
+
+[sub_resource type="QuadMesh" id="QuadMesh_hpfill"]
+size = Vector2(0.8, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hptrack"]
+shading_mode = 0
+albedo_color = Color(0.15, 0.03, 0.03, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hpfill"]
+shading_mode = 0
+albedo_color = Color(0.85, 0.13, 0.13, 1)
+
 [node name="Enemy1" type="CharacterBody3D" unique_id=633503099 groups=["enemies"]]
 collision_layer = 4
 collision_mask = 14
@@ -21,3 +35,16 @@ shape = SubResource("SphereShape3D_dq62l")
 [node name="turret" parent="." unique_id=1993196189 instance=ExtResource("3_ejytf")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.22, 0)
 collision_mask = 1
+
+[node name="HealthBar" type="Node3D" parent="." unique_id=1993196190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0.6)
+visible = false
+
+[node name="Track" type="MeshInstance3D" parent="HealthBar" unique_id=1993196191]
+mesh = SubResource("QuadMesh_hptrack")
+material_override = SubResource("StandardMaterial3D_hptrack")
+
+[node name="Fill" type="MeshInstance3D" parent="HealthBar" unique_id=1993196192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.01)
+mesh = SubResource("QuadMesh_hpfill")
+material_override = SubResource("StandardMaterial3D_hpfill")

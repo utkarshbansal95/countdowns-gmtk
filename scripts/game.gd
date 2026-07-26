@@ -6,10 +6,20 @@ extends Node3D
 @onready var enemy1 = preload("res://scenes/enemy_1.tscn")
 @onready var turretbombs = $turretbombs
 @onready var turretbombscene = preload("res://scenes/turretbomb.tscn")
+@onready var healthbar = $CanvasLayer/HealthBar
 @export var max_enemies = 3
+@export var healthbar_inset := 3.0   # keep in sync with the bar's border width
 
 
 func _ready():
+	# ProgressBar paints its fill across the whole rect, which covers the border at full health.
+	# Has to be set here - the inspector won't take a negative expand margin.
+	var fill: StyleBoxFlat = healthbar.get_theme_stylebox("fill")
+	for side in [SIDE_LEFT, SIDE_TOP, SIDE_RIGHT, SIDE_BOTTOM]:
+		fill.set_expand_margin(side, -healthbar_inset)
+
+	healthbar.max_value = playerscene.max_health   # seed here, not from the player - our @onready vars aren't up yet during its _ready
+	healthbar.value = playerscene.health
 	spawn_enemy1()
 	
 func _on_turret_laser_shot(laser, gp, gr):
@@ -49,10 +59,14 @@ func _on_player_throw_turret(zrotation: float, pos: Vector3):
 	tb.velocity=Vector3(5,0,0).rotated(Vector3(0,0,1),zrotation)
 	tb.move_and_slide()
 
+func _on_player_health_changed(current):
+	healthbar.value = current
+
 func boom(pos):
 	pass
 
 func _on_countdown_timeout():
+	print("Boom")
 	if playerscene.has_turret:
 		boom(playerscene.global_position)
 	else:

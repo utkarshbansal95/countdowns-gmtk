@@ -1,6 +1,7 @@
 class_name player extends WrappableCharacter
 
 signal throw_turret(zrotation, pos)
+signal health_changed(current)
 
 @export var acceleration := 40
 @export var max_speed := 8.0
@@ -83,6 +84,7 @@ func draw_turret():
 
 func damage(dmg = 1):
 	health -= dmg
+	emit_signal("health_changed", health)   # before die() so the bar empties on the last hit
 	if health <= 0:
 		die()
 
