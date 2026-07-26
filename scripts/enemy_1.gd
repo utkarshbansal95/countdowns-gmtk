@@ -42,7 +42,7 @@ func _physics_process(delta):
 		velocity=velocity.limit_length(max_speed)
 		var collision_info = move_and_collide(velocity * delta, true)
 		if collision_info:
-			if collision_info.get_collider() is player:
+			if collision_info.get_collider().is_in_group("player"):   #group, not "is player" - that class ref cycles with player.gd
 				velocity = velocity.bounce(collision_info.get_normal())
 				damage()
 
@@ -52,7 +52,7 @@ func _physics_process(delta):
 		turret.try_fire()
 		
 	#animation
-	rotate(ship_axis, -spin*deg_to_rad(rotation_sp * _delta))
+	rotate(ship_axis, -spin*deg_to_rad(rotation_sp * delta))
 	
 	move_and_slide()
 	
