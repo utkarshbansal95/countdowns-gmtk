@@ -1,9 +1,12 @@
 extends Node3D
 
 @onready var lasers = $lasers
+@onready var enemies = $enemies
+@onready var player = $player
+@onready var enemy1 = preload("res://scenes/enemy_1.tscn")
 
 func _ready():
-	pass
+	spawn_enemy1()
 	
 func _on_turret_laser_shot(laser, gp, gr):
 	lasers.add_child(laser)   # must be in tree before setting global_*
@@ -13,3 +16,14 @@ func _on_turret_laser_shot(laser, gp, gr):
 	
 func _process(_delta):
 	pass
+	
+func spawn_enemy1():
+	while true:
+		await enemies.get_tree().create_timer(5).timeout
+		if enemies.get_child_count() < 5:
+			var enemy = enemy1.instantiate()
+			enemies.add_child(enemy)
+			var gp = Vector3(randf_range(-7,7),randf_range(-4,4),0)
+			while gp.distance_to(player.global_position) < 1:
+				gp = Vector3(randf_range(-7,7),randf_range(-4,4),0)
+			enemy.global_position = gp

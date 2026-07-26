@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://igc2m8ntqn3c"]
 
 [ext_resource type="Script" uid="uid://cyjysxmdpyujm" path="res://scripts/player.gd" id="1_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://cx12ejysg4vua" path="res://scenes/turretequipped.tscn" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://dwnne8s0jjyl" path="res://3d Models/Low_Poly_Spaceship_005.blend" id="4_dqkch"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o5qli"]
@@ -15,6 +14,3 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.4, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=722161618]
 transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_o5qli")
-
-[node name="turret" parent="." unique_id=1831526037 instance=ExtResource("2_g2els")]
-transform = Transform3D(-0.4, 3.4969112e-08, 0, -3.4969112e-08, -0.4, 0, 0, 0, 0.4, -0.005, 0.16, 0.2)

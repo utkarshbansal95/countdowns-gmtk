@@ -36,8 +36,6 @@ size = 9.0
 [node name="Enemy1" parent="." instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 0)
 
-[connection signal="laser_shot" from="player/turret" to="." method="_on_turret_laser_shot"]
 [connection signal="laser_shot" from="Enemy1/turret" to="." method="_on_turret_laser_shot"]
 
-[editable path="player"]
 [editable path="Enemy1"]

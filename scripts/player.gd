@@ -5,8 +5,14 @@ extends WrappableCharacter
 @export var damping := 3.0
 @export var using_mouse := true
 @export var rotation_speed := 0.1
+@export var has_turret := true
 
-@onready var turret: Turret = $turret
+@onready var player_turret_scene = preload("res://scenes/turretequipped.tscn")
+
+var turret: Turret   # filled by draw_turret(), no longer a scene child
+
+func _ready():
+	draw_turret()
 
 func _physics_process(delta):
 	var input_vector := Vector3(Input.get_axis("move_left","move_right"),Input.get_axis("move_down","move_up"),0.0) #move up and down swapped as 3d y axis is normal
@@ -19,6 +25,8 @@ func _physics_process(delta):
 
 func _process(_delta):
 	super._process(_delta)   # keeps WrappableCharacter's screen wrap alive
+	if not turret:
+		return
 	if using_mouse:
 		turret.aim_at(_mouse_on_play_plane())
 	else:
@@ -38,3 +46,14 @@ func _mouse_on_play_plane() -> Vector3:
 	# Solve ray_origin.z + t * ray_dir.z = 0  ->  t = -ray_origin.z / ray_dir.z
 	var t := -ray_origin.z / ray_dir.z
 	return ray_origin + ray_dir * t
+
+func draw_turret():
+	if not has_turret:
+		return
+	turret = player_turret_scene.instantiate()
+	add_child(turret)
+	turret.scale = Vector3(0.4,0.4,0.4)
+	turret.position = Vector3(-0.005, 0.16, 0.2)
+	var g := get_parent()   # replaces the editor wire, which can't survive a runtime turret
+	if g and g.has_method("_on_turret_laser_shot"):
+		turret.laser_shot.connect(g._on_turret_laser_shot)
