@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://5jh6ghfqtw8m"]
+[gd_scene format=3 uid="uid://ddkhhifyudao3"]
 
 [ext_resource type="Script" uid="uid://cnyy1tkgoi71i" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 
-[node name="MainMenu" type="Node2D" unique_id=1875093260]
+[node name="GameOver" type="Node2D" unique_id=1875093260]
 script = ExtResource("1_l6cm7")
 
 [node name="MenuItems" type="ItemList" parent="." unique_id=1593683751]
@@ -31,6 +31,14 @@ WASD to move
 Mouse to aim
 Left click to shoot
 Right click to throw"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1857280597]
+offset_left = 256.0
+offset_right = 404.59998
+offset_bottom = 24.899998
+scale = Vector2(10, 10)
+text = "GAME OVER"
 horizontal_alignment = 1
 
 [connection signal="item_activated" from="MenuItems" to="." method="_on_menu_items_item_activated"]
