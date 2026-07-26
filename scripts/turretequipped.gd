@@ -12,7 +12,7 @@ var shoot_cooldown = false
 
 func aim_at(world_pos: Vector3) -> void:
 	var dir := world_pos - global_position
-	rotation.z = atan2(dir.y, dir.x)
+	global_rotation = Vector3(0, 0, atan2(dir.y, dir.x))   # global, so a rotating parent can't skew the aim
 
 func try_fire() -> void:
 	if shoot_cooldown:

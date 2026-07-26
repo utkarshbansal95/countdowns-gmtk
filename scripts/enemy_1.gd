@@ -11,10 +11,10 @@ class_name enemyclass extends WrappableCharacter
 @export var rotation_sp := 40   #Only for animation
 @onready var ship_axis := Vector3 (0, sin (PI/3),cos (PI/3))
 
-const BAR_OFFSET := Vector3(0, 0.7, 0.6)   # +z keeps it in front of the ufo mesh
-const BAR_HALF_W := 0.4                    # half the fill quad's width
+const BAR_HALF_W := 0.4   # half the fill quad's width
 
 @onready var health := max_health
+@onready var ufo := $"cute-ufo"
 @onready var turret: Turret = $turret
 @onready var spin := PI/2      #defines what direction the ship tends to spin by default
 @onready var healthbar := $HealthBar
@@ -30,6 +30,10 @@ func _ready():
 	spin *= [-1, 1].pick_random()
 
 func _physics_process(delta):
+	
+	#animation - on the mesh only, spinning the body drags the turret out of the play plane
+	ufo.rotate(ship_axis, -spin*deg_to_rad(rotation_sp * delta))
+	
 	#movement section
 	if target:
 		var dir := target.global_position - global_position
@@ -55,19 +59,15 @@ func _physics_process(delta):
 	if target:
 		turret.aim_at(target.global_position)
 		turret.try_fire()
-		
-	#animation
-	rotate(ship_axis, -spin*deg_to_rad(rotation_sp * delta))
 	
 	move_and_slide()
 	
 
 func _process(delta):
-	super._process(delta)   # wrap first, then pin the bar to where we ended up
+	super._process(delta)   # wrap first
 	healthbar.visible = health < max_health
 	if not healthbar.visible:
 		return
-	healthbar.global_transform = Transform3D(Basis(), global_position + BAR_OFFSET)   # identity basis cancels the ship's spin
 	var ratio := clampf(float(health) / max_health, 0.0, 1.0)
 	healthbar_fill.scale.x = maxf(ratio, 0.001)
 	healthbar_fill.position.x = -BAR_HALF_W * (1.0 - ratio)   # quad is centred, so pin the left edge
