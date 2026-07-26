@@ -9,12 +9,12 @@ var radius: float
 
 func _ready():
 	radius = startradius
-	cshape.radius = radius
+	cshape.shape.radius = radius
 
 func _process(_delta):
 	if radius < maxradius:
 		radius += rate_of_expansion
-	cshape.radius = radius
+	cshape.shape.radius = radius
 
 
 func _on_body_entered(body):
