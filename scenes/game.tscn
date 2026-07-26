@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://d2xnlxkknvy30"]
 
-[ext_resource type="Script" uid="uid://3mj4wj6l8hik" path="res://scripts/main.gd" id="1_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://igc2m8ntqn3c" path="res://scenes/player.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://3mj4wj6l8hik" path="res://scripts/game.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://igc2m8ntqn3c" path="res://scenes/player.tscn" id="2_lnu2h"]
 
 [sub_resource type="Environment" id="Environment_0wfyh"]
 background_mode = 1
 ambient_light_color = Color(0.0032215356, 0.14637351, 0.67871016, 1)
 
-[node name="main" type="Node3D" unique_id=585456309]
-script = ExtResource("1_0wfyh")
+[node name="game" type="Node3D" unique_id=585456309]
+script = ExtResource("1_yqjtg")
 
-[node name="player" parent="." unique_id=1455936356 instance=ExtResource("1_o5qli")]
+[node name="player" parent="." unique_id=1455936356 instance=ExtResource("2_lnu2h")]
 collision_layer = 2
 collision_mask = 20
 acceleration = 16
