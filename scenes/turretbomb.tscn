@@ -8,6 +8,7 @@ radius = 0.16357422
 height = 2.1357422
 
 [node name="turretbomb" type="CharacterBody3D" unique_id=1304234305]
+collision_mask = 6
 script = ExtResource("1_0omr4")
 
 [node name="17957_Hand_cannon_v1" parent="." unique_id=691261060 instance=ExtResource("2_ss1iq")]
