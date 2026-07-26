@@ -6,6 +6,7 @@ extends Node3D
 @onready var enemy1 = preload("res://scenes/enemy_1.tscn")
 @onready var turretbombs = $turretbombs
 @onready var turretbombscene = preload("res://scenes/turretbomb.tscn")
+@export var max_enemies = 3
 
 func _ready():
 	spawn_enemy1()
@@ -22,7 +23,7 @@ func _process(_delta):
 func spawn_enemy1():
 	while true:
 		await enemies.get_tree().create_timer(5).timeout
-		if enemies.get_child_count() < 5:
+		if enemies.get_child_count() < max_enemies:
 			var enemy = enemy1.instantiate()
 			var gp: Vector3
 			var redo = true
@@ -37,6 +38,7 @@ func spawn_enemy1():
 						redo = true
 						break
 			enemies.add_child(enemy)
+			enemy.turret.laser_shot.connect(_on_turret_laser_shot)   # spawned enemies aren't editor-wired
 			enemy.global_position = gp
 
 

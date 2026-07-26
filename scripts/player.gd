@@ -8,7 +8,9 @@ signal throw_turret(zrotation, pos)
 @export var using_mouse := true
 @export var rotation_speed := 0.1
 @export var has_turret := true
+@export var max_health = 10
 
+@onready var health = max_health
 @onready var player_turret_scene = preload("res://scenes/turretequipped.tscn")
 
 var turret: Turret   # filled by draw_turret(), no longer a scene child
