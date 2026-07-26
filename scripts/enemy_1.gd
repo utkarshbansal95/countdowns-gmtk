@@ -21,7 +21,7 @@ func _ready():
 	turret.laser_color = enemy_laser_color
 	spin *= [-1, 1].pick_random()
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	#movement section
 	if target:
 		var dir := target.global_position - global_position
@@ -35,8 +35,13 @@ func _physics_process(_delta):
 			dir = Vector3(0,0,0)
 		dir = tangent+dir
 		dir = dir.normalized()
-		velocity += dir*acceleration*_delta
+		velocity += dir*acceleration*delta
 		velocity=velocity.limit_length(max_speed)
+		var collision_info = move_and_collide(velocity * delta, true)
+		if collision_info:
+			if collision_info.get_collider() is player:
+				velocity = velocity.bounce(collision_info.get_normal())
+				damage()
 
 	#aiming and firing section
 	if target:
