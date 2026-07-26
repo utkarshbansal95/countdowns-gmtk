@@ -11,6 +11,7 @@ class_name enemy extends WrappableCharacter
 var target: Node3D
 
 func _ready():
+	spawn() #spawn animation and initial wait
 	target = get_tree().get_first_node_in_group("player")
 	turret.rate_of_fire = enemy_rate_of_fire
 	turret.laser_color = enemy_laser_color
@@ -27,6 +28,14 @@ func _process(_delta):
 	if target:
 		turret.aim_at(target.global_position)
 		turret.try_fire()
+
+func spawn():
+	pass
+
+func damage(dmg = 1):
+	health -= dmg
+	if health <= 0:
+		die()
 
 func die():
 	queue_free()

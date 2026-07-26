@@ -2,6 +2,7 @@ extends WrappableArea
 
 @export var laser_speed := 8.0
 @export var color := Color(0.3, 0.6, 1.0)
+@export var dmg := 1
 
 var direction := Vector3.RIGHT
 var shooter: Node
@@ -24,7 +25,5 @@ func _on_body_entered(body):
 	if body == shooter:   # muzzle sits inside the enemy's own collider
 		return
 	if "health" in body:
-		body.health -= 1 #damage
-		if body.health <= 0:
-			body.die()
+		body.damage(dmg) #damage
 	queue_free()
