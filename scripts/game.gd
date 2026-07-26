@@ -26,6 +26,8 @@ func _ready():
 	healthbar.max_value = playerscene.max_health   # seed here, not from the player - our @onready vars aren't up yet during its _ready
 	healthbar.value = playerscene.health
 	spawn_enemy1()
+	await get_tree().create_timer(2.0).timeout
+	timermusic.play()
 	
 func _on_turret_laser_shot(laser, gp, gr):
 	lasers.add_child(laser)   # must be in tree before setting global_*
