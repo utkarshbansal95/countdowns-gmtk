@@ -27,8 +27,8 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func _process(_delta):
-	super._process(_delta)   # keeps WrappableCharacter's screen wrap alive
+func _process(delta):
+	super._process(delta)   # keeps WrappableCharacter's screen wrap alive
 	if not turret:
 		return
 	if using_mouse:
@@ -44,6 +44,13 @@ func _process(_delta):
 		emit_signal ("throw_turret", turret.rotation.z,turret.global_position)
 		turret.queue_free()
 		has_turret=false
+	var collision_info = move_and_collide(velocity * delta, true)
+	if collision_info:
+		if collision_info.get_collider() is enemy:
+			velocity = velocity.bounce(collision_info.get_normal())
+		elif collision_info.get_collider() is tbomb:
+			has_turret = true
+			draw_turret()
 
 #Got from claude for a 3d get global mouse position
 func _mouse_on_play_plane() -> Vector3:

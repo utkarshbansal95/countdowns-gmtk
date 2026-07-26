@@ -1,4 +1,4 @@
-extends WrappableCharacter
+class_name tbomb extends WrappableCharacter
 
 func _ready() -> void:
 	pass
