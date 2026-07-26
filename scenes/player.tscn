@@ -16,20 +16,13 @@ albedo_color = Color(0.6784314, 0.79607844, 0.7490196, 0.49803922)
 
 [node name="player" type="CharacterBody3D" unique_id=1562498724 groups=["player"]]
 collision_layer = 2
-collision_mask = 20
+collision_mask = 12
 script = ExtResource("1_qhqgy")
-acceleration = null
-max_speed = null
-damping = null
-using_mouse = null
-rotation_speed = null
-has_turret = null
-screen_extent = null
 
 [node name="Low_Poly_Spaceship_0052" parent="." unique_id=255899932 instance=ExtResource("4_dqkch")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.4, 0)
 
-[node name="Low_Poly_Spaceship_005_001" parent="Low_Poly_Spaceship_0052/Low_Poly_Spaceship_005" parent_id_path=PackedInt32Array(255899932, 598970980) index="0" unique_id=790109325]
+[node name="Low_Poly_Spaceship_005_001" parent="Low_Poly_Spaceship_0052/Low_Poly_Spaceship_005" parent_id_path=PackedInt32Array(255899932, 1350379726) index="0" unique_id=1817375459]
 surface_material_override/1 = SubResource("StandardMaterial3D_rtw2f")
 surface_material_override/2 = SubResource("StandardMaterial3D_bqqt6")
 surface_material_override/4 = SubResource("StandardMaterial3D_8ln24")

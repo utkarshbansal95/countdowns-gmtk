@@ -7,8 +7,8 @@
 height = 2.461914
 
 [node name="laser" type="Area3D" unique_id=1123376728]
-collision_layer = 16
-collision_mask = 22
+collision_layer = 8
+collision_mask = 14
 script = ExtResource("1_a7dhc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1722678000]

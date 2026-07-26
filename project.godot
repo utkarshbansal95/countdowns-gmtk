@@ -92,8 +92,7 @@ counterclockwise={
 3d_physics/layer_1="Background"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemies"
-3d_physics/layer_4="Projectiles that only hit enemies"
-3d_physics/layer_5="Projectiles that hit everyone"
+3d_physics/layer_4="Projectiles"
 
 [physics]
 
